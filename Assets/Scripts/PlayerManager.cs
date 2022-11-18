@@ -21,15 +21,19 @@ public class PlayerManager
     #endregion
 
     public GameObject player { get; set; }
+    Camera cam;
 
     public bool canMove;
     public float smoothSpeed = 0.007f;
     public Vector3 locationOffset;
     public Vector3 rotationOffset;
 
+    private float bulletDamage = 1f;
+
     public void Initialize()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        cam = Camera.main;
 
         canMove = false;
     }
@@ -41,7 +45,7 @@ public class PlayerManager
 
     public void Refresh()
     {
-        
+
     }
 
     public void MoveToNextCheckPoint(Transform destination)
@@ -58,6 +62,19 @@ public class PlayerManager
             Quaternion smoothedrotation = Quaternion.Lerp(player.transform.rotation, desiredrotation, smoothSpeed);
             player.transform.rotation = smoothedrotation;
         }
+    }
 
+    public void ShootBullet()
+    {
+        RaycastHit hit;
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out hit, LayerMask.NameToLayer("Zombie")))
+        {
+            hit.transform.gameObject.GetComponent<Zombie>().GetShotByPlayer(bulletDamage);
+            Debug.Log(hit.transform.gameObject.name);
+        }
+
+        Debug.Log("Pow");
     }
 }

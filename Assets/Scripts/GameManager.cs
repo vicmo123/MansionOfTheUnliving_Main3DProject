@@ -88,6 +88,10 @@ public class GameManager
 
     private void AttackUpdate()
     {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            PlayerManager.Instance.ShootBullet();
+        }
         if (Input.GetKeyDown(KeyCode.Space))
         {
             gamephase = GamePhase.Move;

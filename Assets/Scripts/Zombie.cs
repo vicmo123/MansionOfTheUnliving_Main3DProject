@@ -7,20 +7,29 @@ public class Zombie : MonoBehaviour
     public Animator animCtrl;
     public ZombieAgentScript agentScript;
 
-    // Start is called before the first frame update
-    void Start()
+    public float healthPoints { get; set; }
+
+    private void Start()
     {
-        
+        healthPoints = 2;
+        animCtrl.SetFloat("Speed", value: 1);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        animCtrl.SetFloat("Speed", value: 1);
+        checkIfDead();
+    }
 
-        Debug.Log(animCtrl.GetFloat("Speed"));
+    public void checkIfDead()
+    {
+        if(healthPoints <= 0.0)
+        {
+            animCtrl.SetTrigger("IsDead");
+        }
+    }
 
-
-        Debug.Log(agentScript.agent.velocity);
+    public void GetShotByPlayer(float dmg)
+    {
+        healthPoints -= dmg;
     }
 }
