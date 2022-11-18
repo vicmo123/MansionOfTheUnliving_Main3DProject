@@ -1317,6 +1317,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3556142799923866602}
   - component: {fileID: -9054804102426110273}
+  - component: {fileID: -3454599354981660868}
+  - component: {fileID: -2996934891790139197}
+  - component: {fileID: -2737499168929068928}
   m_Layer: 0
   m_Name: MaleZombie
   m_TagString: Untagged
@@ -1361,6 +1364,54 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!195 &-3454599354981660868
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4184448396841857360}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &-2996934891790139197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4184448396841857360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13bd0169ea2c71849a243a160558f762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-2737499168929068928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4184448396841857360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83346145a5f87e54bb9d6f81638d4c30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animCtrl: {fileID: -9054804102426110273}
+  agentScript: {fileID: -2996934891790139197}
 --- !u!1 &4846282415278326930
 GameObject:
   m_ObjectHideFlags: 0

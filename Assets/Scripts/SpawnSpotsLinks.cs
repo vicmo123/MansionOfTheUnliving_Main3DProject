@@ -16,5 +16,12 @@ public class SpawnSpotsLinks : MonoBehaviour
     private void Awake()
     {
         tabSpots = new Transform[numSpots];
+
+        //Could be better
+        tabSpots[0] = spot1;
+        tabSpots[1] = spot2;
+        tabSpots[2] = spot3;
+        tabSpots[3] = spot4;
+        tabSpots[4] = spot5;
     }
 }

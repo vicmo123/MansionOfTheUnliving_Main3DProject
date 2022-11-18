@@ -21,6 +21,7 @@ public class GameManager
 
     enum GamePhase
     {
+        MainMenu,
         Setup,
         Attack, 
         Move
@@ -31,7 +32,7 @@ public class GameManager
     // Start is called before the first frame update
     public void Initialize()
     {
-        gamephase = GamePhase.Setup;
+        gamephase = GamePhase.Move;
 
         CheckPoint.PlayerReachedCheckPointEvent.AddListener(PlayerArrivedAtDestination);
 
@@ -63,6 +64,7 @@ public class GameManager
                 MovingUpdate();
                 break;
             default:
+                Debug.Log("unhandeled case " + gamephase);
                 break;
         }
 
@@ -77,19 +79,19 @@ public class GameManager
 
     private void SetupUpdate()
     {
-        //ZombieManager.Instance.SetupWave(CheckPointsManager.Instance.current);
+        ZombieManager.Instance.WaveInitialize(PlayerManager.Instance.player.transform);
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            gamephase = GamePhase.Move;
-        }
+        Debug.Log("Setup");
 
-            
+        gamephase = GamePhase.Attack;
     }
 
     private void AttackUpdate()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            gamephase = GamePhase.Move;
+        }
     }
 
     private void MovingUpdate()
@@ -102,6 +104,8 @@ public class GameManager
     private void PlayerArrivedAtDestination()
     {
         gamephase = GamePhase.Setup;
+
+        Debug.Log("Hey");
         CheckPointsManager.Instance.SetCurrent();
     }
 }

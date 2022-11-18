@@ -1611,6 +1611,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8620455492956671567}
   - component: {fileID: 5468564920120132594}
+  - component: {fileID: 118463824533531840}
+  - component: {fileID: 8992588228954920398}
+  - component: {fileID: -3585488656140055916}
   m_Layer: 0
   m_Name: RumbaJim
   m_TagString: Untagged
@@ -1655,6 +1658,54 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!195 &118463824533531840
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9000956457919649013}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &8992588228954920398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9000956457919649013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13bd0169ea2c71849a243a160558f762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-3585488656140055916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9000956457919649013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9b3a909035d364ca97d309f132fdce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animCtrl: {fileID: 5468564920120132594}
+  agentScript: {fileID: 8992588228954920398}
 --- !u!1 &9164186944151680942
 GameObject:
   m_ObjectHideFlags: 0

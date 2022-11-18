@@ -19,10 +19,10 @@ public class CheckPointsManager
     private CheckPointsManager() { }
     #endregion
 
-    private GameObject[] checkPoints;
+    public GameObject[] checkPoints { get; private set; }
     private GameObject player;
 
-    public int numOfCheckPoints = 9;
+    public int numOfCheckPoints = 8;
     public int current { get; set; }
 
     public void Initialize()
@@ -54,7 +54,7 @@ public class CheckPointsManager
         //        current = 0;
         //    }
         //}
-        Debug.Log(checkPoints.Length);
+        //Debug.Log(checkPoints.Length);
         
     }
 
