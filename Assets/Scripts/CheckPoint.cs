@@ -5,18 +5,18 @@ using UnityEngine.Events;
 
 public class CheckPoint : MonoBehaviour
 {
-    public static UnityEvent<GameObject> PlayerReachedCheckPointEvent;
+    public static UnityEvent PlayerReachedCheckPointEvent;
 
     private void Awake()
     {
-        PlayerReachedCheckPointEvent = new UnityEvent<GameObject>();
+        PlayerReachedCheckPointEvent = new UnityEvent();
     }
 
     void OnTriggerEnter(Collider plyr)
     {
         if (plyr.gameObject.tag == "Player")
         {
-            PlayerReachedCheckPointEvent.Invoke(this.gameObject);
+            PlayerReachedCheckPointEvent.Invoke();
         }
     }
 }

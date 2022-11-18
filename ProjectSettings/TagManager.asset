@@ -10,6 +10,7 @@ TagManager:
   - CheckPoints
   - FirstCheckPoint
   - LastCheckPoint
+  - UI
   layers:
   - Default
   - TransparentFX

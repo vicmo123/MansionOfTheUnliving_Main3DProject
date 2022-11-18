@@ -2,17 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundManager : MonoBehaviour
+public class SoundManager
 {
-    // Start is called before the first frame update
-    void Start()
+    #region Singleton
+    private static SoundManager instance;
+    public static SoundManager Instance
     {
-        
+        get
+        {
+            if (instance == null)
+                instance = new SoundManager();
+            return instance;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private SoundManager() { }
+    #endregion
+
+    public void Initialize()
     {
-        
+
+    }
+
+    public void SecondInitialize()
+    {
+
+    }
+
+    public void Refresh()
+    {
+
+    }
+
+    public void PhysicsRefresh()
+    {
+
     }
 }

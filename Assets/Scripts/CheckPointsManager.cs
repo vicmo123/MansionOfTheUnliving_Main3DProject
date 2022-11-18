@@ -22,27 +22,25 @@ public class CheckPointsManager
     private GameObject[] checkPoints;
     private GameObject player;
 
-    public int numOfCheckPoints;
-    int current = 0;
-    public float speed;
-    float WPradius = 1;
+    public int numOfCheckPoints = 9;
+    public int current { get; set; }
 
     public void Initialize()
     {
         checkPoints = new GameObject[numOfCheckPoints];
 
-        CheckPoint.PlayerReachedCheckPointEvent.AddListener(PlayerReachedCheckPoint);
+        current = -1;
     }
 
     public void SecondInitialize()
     {
-        player = GameObject.FindWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
 
-        GameObject tempCheckPoints = GameObject.FindWithTag("CheckPoints");
+        GameObject checkPointParent = GameObject.FindGameObjectWithTag("CheckPoints");
 
         for (int i = 0; i < numOfCheckPoints; i++)
         {
-            checkPoints[i] = tempCheckPoints.transform.GetChild(i).gameObject;
+            checkPoints[i] = checkPointParent.transform.GetChild(i).gameObject;
         }
     }
 
@@ -56,12 +54,27 @@ public class CheckPointsManager
         //        current = 0;
         //    }
         //}
-        //transform.position = Vector3.MoveTowards(transform.position, checkPoints[current].transform.position, Time.deltaTime * speed);
+        Debug.Log(checkPoints.Length);
+        
     }
 
-    private void PlayerReachedCheckPoint(GameObject triggeredCheckPoint)
+    public Transform GetDestination()
     {
-        player.transform.position = triggeredCheckPoint.transform.position;
-        player.transform.rotation = triggeredCheckPoint.transform.rotation;
+        if(current + 1 < checkPoints.Length)
+        {
+            return checkPoints[current + 1].transform;
+        }
+        else
+        {
+            return checkPoints[current].transform;
+        }
+    }
+
+    public void SetCurrent()
+    {
+        if (current < numOfCheckPoints)
+        {
+            current++;
+        }
     }
 }
