@@ -19,6 +19,10 @@ public class ZombieAgentScript : MonoBehaviour
         {
             agent.SetDestination(followTarget.position);
         }
+        else
+        {
+            agent.isStopped = true;
+        }
     }
 
     public void SetTarget(Transform _followTarget)

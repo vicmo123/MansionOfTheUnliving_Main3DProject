@@ -11,6 +11,7 @@ TagManager:
   - FirstCheckPoint
   - LastCheckPoint
   - UI
+  - SoundManager
   layers:
   - Default
   - TransparentFX

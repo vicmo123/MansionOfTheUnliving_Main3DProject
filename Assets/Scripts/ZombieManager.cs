@@ -30,11 +30,13 @@ public class ZombieManager
     private GameObject specialZombiePrefab;
 
     static SpawnSpotsLinks spawnLocs;
+    public int numLocs = 5;
     private float offSet = 10f;
 
-    private int spawnCount;
+    public int spawnCount;
 
     public int waveNumber { get; set; }
+
     public void Initialize()
     {
         waveNumber = 0;
@@ -72,7 +74,11 @@ public class ZombieManager
 
     private void SetupWave()
     {
+        tabZombie = new List<GameObject>();
+
         totalZombies = NUMBER_ZOMBIES_START + NUMBER_SPECIAL_ZOMBIES + (ADDITIONAL_ZOMBIE * waveNumber);
+
+        spawnCount = 0;
 
         for (int i = 0; i < totalZombies; i++)
         {
@@ -102,6 +108,18 @@ public class ZombieManager
         {
             ZombieAgentScript zas = Zombie.GetComponent<ZombieAgentScript>();
             zas.SetTarget(target);
+        }
+    }
+
+    public bool CheckIfWaveIsOver()
+    {
+        if(spawnCount <= 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

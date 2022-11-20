@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager
 {
@@ -20,10 +21,13 @@ public class UIManager
     #endregion
 
     public static UILinks UiLinks { get; set; }
+    public Button mainMenuButton;
 
     public void Initialize()
     {
         UiLinks = GameObject.FindGameObjectWithTag("UI").GetComponent<UILinks>();
+
+        mainMenuButton = UiLinks.mainMenu.transform.GetChild(2).GetComponent<Button>(); 
     }
 
     public void SecondInitialize()

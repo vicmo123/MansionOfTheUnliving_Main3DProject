@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager
 {
@@ -29,10 +30,12 @@ public class GameManager
 
     GamePhase gamephase;
 
+    bool startGame = false;
+
     // Start is called before the first frame update
     public void Initialize()
     {
-        gamephase = GamePhase.Move;
+        gamephase = GamePhase.MainMenu;
 
         CheckPoint.PlayerReachedCheckPointEvent.AddListener(PlayerArrivedAtDestination);
 
@@ -40,6 +43,7 @@ public class GameManager
         PlayerManager.Instance.Initialize();
         CheckPointsManager.Instance.Initialize();
         ZombieManager.Instance.Initialize();
+        SoundManager.Instance.Initialize();
     }
 
     public void SecondInitialize()
@@ -48,12 +52,18 @@ public class GameManager
         PlayerManager.Instance.SecondInitialize();
         CheckPointsManager.Instance.SecondInitialize();
         ZombieManager.Instance.SecondInitialize();
+        SoundManager.Instance.SecondInitialize();
+
+        UIManager.Instance.mainMenuButton.onClick.AddListener(StartGame);
     }
 
     public void Refresh()
     {
         switch (gamephase)
         {
+            case GamePhase.MainMenu:
+                MainMenuUpdate();
+                break;
             case GamePhase.Setup:
                 SetupUpdate();
                 break;
@@ -77,6 +87,20 @@ public class GameManager
 
     }
 
+
+    public void MainMenuUpdate()
+    {
+        if (startGame)
+        {
+            UIManager.UiLinks.mainMenu.SetActive(false);
+            UIManager.UiLinks.playerStatsUI.SetActive(true);
+
+            gamephase = GamePhase.Move;
+
+            SoundManager.Instance.PlayRumbaMusic();
+        }
+    }
+
     private void SetupUpdate()
     {
         ZombieManager.Instance.WaveInitialize(PlayerManager.Instance.player.transform);
@@ -92,9 +116,18 @@ public class GameManager
         {
             PlayerManager.Instance.ShootBullet();
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || ZombieManager.Instance.CheckIfWaveIsOver() == true)
         {
             gamephase = GamePhase.Move;
+
+            if(ZombieManager.Instance.waveNumber < ZombieManager.Instance.numLocs)
+            {
+                ZombieManager.Instance.waveNumber++;
+            }
+            else
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().ToString());
+            }
         }
     }
 
@@ -109,7 +142,11 @@ public class GameManager
     {
         gamephase = GamePhase.Setup;
 
-        Debug.Log("Hey");
         CheckPointsManager.Instance.SetCurrent();
+    }
+
+    public void StartGame()
+    {
+        startGame = true;
     }
 }

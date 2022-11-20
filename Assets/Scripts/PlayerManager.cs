@@ -75,6 +75,8 @@ public class PlayerManager
             Debug.Log(hit.transform.gameObject.name);
         }
 
-        Debug.Log("Pow");
+        SoundManager.Instance.PlayShootingSound();
+
+        SoundManager.Instance.PlayReloadingSound();
     }
 }

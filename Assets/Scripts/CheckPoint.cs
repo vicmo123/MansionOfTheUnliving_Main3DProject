@@ -7,6 +7,7 @@ public class CheckPoint : MonoBehaviour
 {
     public static UnityEvent PlayerReachedCheckPointEvent;
 
+    int count = 0;
     private void Awake()
     {
         PlayerReachedCheckPointEvent = new UnityEvent();
@@ -14,7 +15,9 @@ public class CheckPoint : MonoBehaviour
 
     void OnTriggerEnter(Collider plyr)
     {
-        if (plyr.gameObject.tag == "Player")
+        count++;
+        
+        if (plyr.gameObject.tag == "Player" || count != 2 || count != 4)
         {
             PlayerReachedCheckPointEvent.Invoke();
         }
